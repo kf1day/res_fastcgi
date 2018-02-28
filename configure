@@ -21,16 +21,17 @@ while [ ! -d "$LIB" ]; do
  fi
 done
 
-printf "default: res_fastcgi.so
+cat > Makefile << EOF
+default: res_fastcgi.so
 
 install: res_fastcgi.so
-	cp res_fastcgi.so %s/
+	cp res_fastcgi.so ${LIB}/
 
 clean:
 	rm -f res_fastcgi.so res_fastcgi-dbg.so
 
 res_fastcgi.so: res_fastcgi.c
-	gcc -g -Wall -shared -o res_fastcgi-dbg.so -fPIC res_fastcgi.c -I%s/include
+	gcc -g -Wall -shared -o res_fastcgi-dbg.so -fPIC res_fastcgi.c -I${SRC}/include
 	cp res_fastcgi-dbg.so res_fastcgi.so
 	strip res_fastcgi.so
-" "$LIB" "$SRC" > Makefile
+EOF
