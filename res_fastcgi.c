@@ -1,19 +1,17 @@
 #include <string.h>
 #include <sys/un.h>
-#include "asterisk.h"
+
 
 #define AST_MODULE "res_fastcgi"
+#define AST_MODULE_SELF_SYM res_fastagi
 
-ASTERISK_FILE_VERSION(__FILE__, "$Revision$")
+
+#include "asterisk.h"
 
 #include "asterisk/config.h"
 #include "asterisk/module.h"
 #include "asterisk/logger.h"
 #include "asterisk/manager.h"
-
-
-//AST_MUTEX_DEFINE_STATIC(fcgi_lock);
-
 
 #define FCGI_MSG_SZ 0x4000
 
